@@ -6,7 +6,8 @@ const {
   getAllUsers,
   loginUser,
   changePassword,
-  registerUser, // Add this function
+  registerUser,
+  getUserById,
 } = require("../controllers/usersController");
 const authMiddleware = require("../middlewares/authmiddleware");
 const roleMiddleware = require("../middlewares/roleMiddleware");
@@ -37,6 +38,8 @@ router.get(
   // roleMiddleware(["admin"]),
   getAllUsers
 );
+router.get("/user/:id", authMiddleware, getUserById);
+
 router.put("/change-password", authMiddleware, changePassword);
 
 // User login route
